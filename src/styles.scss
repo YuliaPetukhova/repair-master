@@ -21,21 +21,26 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
-.button {
+button {
     background-color: #0160A9;
     border-radius: 6px;
-    width: 277px;
-    height: 87px;
+    width: 222px;
+    height: 67px;
     box-sizing: border-box;
     padding: 14px;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     color: #ffffff;
     border: 0;
     outline: none;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.button:hover {
+    box-shadow: 3px 4px 10px 0 rgba(1, 96, 169, 0.8)
 }

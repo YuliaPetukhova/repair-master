@@ -1,0 +1,39 @@
+.main {
+    position: relative;
+    overflow: hidden;
+}
+
+.main-content {
+    padding-top: 60px;
+    padding-bottom: 200px;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: flex-start;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    line-height: 100%;
+    margin-bottom: 20px;
+}
+
+.main-text {
+    max-width: 697px;
+    font-size: 18px;
+    line-height: 130%;
+    margin-bottom: 40px;
+    margin-left: 40px;
+}
+
+@media screen and (max-width: 399px) {
+    .button {
+        width: 150px;
+    }
+}

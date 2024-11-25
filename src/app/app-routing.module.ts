@@ -1,18 +1,32 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-
-    { path: '', redirectTo: '/main', pathMatch: 'full' },
-    { path: 'main', loadChildren: () => import('./components/main/main.component').then(m => m.MainComponent) },
-    { path: 'about', loadChildren: () => import('./components/about/about.component').then(m => m.AboutComponent) },
-    { path: 'repair-services', loadChildren: () => import('./components/repair-services/repair-services.component').then(m => m.RepairServicesComponent) },
-    { path: 'reviews', loadChildren: () => import('./components/reviews/reviews.component').then(m => m.ReviewsComponent) },
-    { path: '**', redirectTo: '/main' }
+    {
+        path: '',
+        loadComponent: () => import('./components/main/main.component').then(m => m.MainComponent)
+    },
+    {
+        path: 'about',
+        loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent)
+    },
+    {
+        path: 'repair-services',
+        loadComponent: () => import('./components/repair-services/repair-services.component').then(m => m.RepairServicesComponent)
+    },
+    {
+        path: 'reviews',
+        loadComponent: () => import('./components/reviews/reviews.component').then(m => m.ReviewsComponent)
+    },
+    {
+        path: '**',
+        redirectTo: ''
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
