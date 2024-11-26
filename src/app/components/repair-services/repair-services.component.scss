@@ -1,0 +1,99 @@
+.repair-info {
+    max-width: 811px;
+}
+
+.repair-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .repair-title {
+        font-family: 'Montserrat-ExtraBold', sans-serif;
+        font-size: 22px;
+        line-height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .repair-templates {
+        background-color: #0160A97F;
+        color: white;
+        border-radius: 20px;
+    }
+}
+
+.repair-text {
+    font-size: 16px;
+    line-height: 130%;
+    margin-bottom: 20px;
+}
+
+.repair-textarea {
+    width: 811px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px;
+    min-height: 80px;
+    border: 1px solid #0160A9;
+    border-radius: 10px;
+    overflow: hidden;
+    resize: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.repair-button-selected {
+    margin-bottom: 10px;
+}
+
+.repair-button-theme {
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.repair-button-theme.selected {
+    background-color: #0160A9;
+    color: white;
+}
+
+.repair-date {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.repair-calendar {
+    margin: 10px 0;
+}
+
+.repair-select-date {
+    margin: 10px 0;
+}
+
+.repair-select-time {
+    margin: 10px 0;
+}
+
+.repair-action {
+    margin: 44px 0;
+
+    .repair-action-btn {
+        padding: 20px;
+        font-size: 20px;
+        background-color: white;
+        border-radius: 30px;
+        border: 2px solid #0160A9;
+        color: black;
+    }
+}

@@ -1,1 +1,63 @@
-<p>repair-services works!</p>
+<app-menu></app-menu>
+<section class="repair-content">
+    <div class="container">
+        <div class="repair-info">
+
+            <div class="repair-header">
+                <h1 class="repair-title">Выбор консультации</h1>
+                <button type="button" class="repair-templates">Шаблоны консультаций</button>
+            </div>
+
+            <div class="repair-text">
+                <p>Кратко опишите проблему (необязательно)</p>
+                <textarea type="text" class="repair-textarea"></textarea>
+            </div>
+
+            <div class="repair-button-selected">
+                <p>Выберите темы вопросов для обсуждения</p>
+                <button
+                    class="repair-button-theme"
+                    *ngFor="let topic of topics"
+                    [ngClass]="{'selected': isSelectedTopics(topic)}"
+                    (click)="toggleSelectionTopics(topic)"
+                >
+                    {{ topic }}
+                </button>
+            </div>
+
+            <div class="repair-date">
+                <p class="repair-date-title">Выберите дату и время консультации</p>
+                <button class="repair-calendar">Все даты</button>
+            </div>
+
+            <div class="repair-select-date">
+                <button
+                    class="repair-button-theme"
+                    *ngFor="let date of dates"
+                    [ngClass]="{'selected': isSelectedDates(date)}"
+                    (click)="toggleSelectionDates(date)"
+                >
+                    {{ date }}
+                </button>
+            </div>
+
+            <div class="repair-select-time">
+                <button
+                    class="repair-button-theme"
+                    *ngFor="let time of times"
+                    [ngClass]="{'selected': isSelectedTimes(time)}"
+                    (click)="toggleSelectionTimes(time)"
+                >
+                    {{ time }}
+                </button>
+
+            </div>
+
+            <input type="checkbox" class="repair-action-btn">Сохранить шаблон
+
+            <div class="repair-action">
+                <button type="submit" class="repair-action-btn">Оформить консультацию</button>
+            </div>
+        </div>
+    </div>
+</section>
