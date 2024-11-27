@@ -17,11 +17,11 @@
                 <p>Выберите темы вопросов для обсуждения</p>
                 <button
                     class="repair-button-theme"
-                    *ngFor="let topic of topics"
-                    [ngClass]="{'selected': isSelectedTopics(topic)}"
-                    (click)="toggleSelectionTopics(topic)"
+                    *ngFor="let tag of tags"
+                    [ngClass]="{'selected': isSelectedTags(tag)}"
+                    (click)="toggleSelectionTags(tag)"
                 >
-                    {{ topic }}
+                    {{ tag.name }}
                 </button>
             </div>
 
@@ -33,24 +33,23 @@
             <div class="repair-select-date">
                 <button
                     class="repair-button-theme"
-                    *ngFor="let date of dates"
-                    [ngClass]="{'selected': isSelectedDates(date)}"
-                    (click)="toggleSelectionDates(date)"
+                    *ngFor="let availableDate of availableDates"
+                    [ngClass]="{'selected': isSelectedAvailableDates(availableDate)}"
+                    (click)="toggleSelectionAvailableDates(availableDate)"
                 >
-                    {{ date }}
+                    {{ availableDate.date }}
                 </button>
             </div>
 
             <div class="repair-select-time">
                 <button
                     class="repair-button-theme"
-                    *ngFor="let time of times"
-                    [ngClass]="{'selected': isSelectedTimes(time)}"
-                    (click)="toggleSelectionTimes(time)"
+                    *ngFor="let time of availableDates"
+                    [ngClass]="{'selected': isSelectedAvailableTimes(time)}"
+                    (click)="toggleSelectionAvailableTimes(time)"
                 >
-                    {{ time }}
+                    {{ time.times}}
                 </button>
-
             </div>
 
             <input type="checkbox" class="repair-action-btn">Сохранить шаблон
