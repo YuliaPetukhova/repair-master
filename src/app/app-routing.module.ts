@@ -19,6 +19,10 @@ const routes: Routes = [
         loadComponent: () => import('./components/reviews/reviews.component').then(m => m.ReviewsComponent)
     },
     {
+        path: 'admin',
+        loadComponent: () => import('./components/admin/admin.component').then(m => m.AdminComponent)
+    },
+    {
         path: '**',
         redirectTo: ''
     }

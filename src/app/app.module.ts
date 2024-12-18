@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CommonModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

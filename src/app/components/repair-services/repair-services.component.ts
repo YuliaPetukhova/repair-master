@@ -5,6 +5,7 @@ import {ConsultationService} from "../../services/consultation.service";
 import {IConsultation} from "../../models/IConsultation";
 import {ITag} from "../../models/ITag";
 import {IAvailableDates} from "../../models/IAvailableDates";
+import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-repair-services',
@@ -13,7 +14,8 @@ import {IAvailableDates} from "../../models/IAvailableDates";
     imports: [
         MenuComponent,
         NgForOf,
-        NgClass
+        NgClass,
+        ReactiveFormsModule
     ],
     standalone: true
 })
@@ -23,47 +25,14 @@ export class RepairServicesComponent implements OnInit {
     availableDates: IAvailableDates[] | undefined;
 
     selectedTags: string[] = [];
-    selectedAvailableDates: string[] = [];
     selectedAvailableTimes: string[] = [];
 
-    // groups: IGroup[];
-    // currentGroup: IGroup;
-    // URL: string = "/catalog/";
-    // DATA: string = 'currentGroup';
-    // catalog$: Observable<ICatalog>;
-    // task: ITask;
-    //
-    // ngOnInit(): void {
-    //     this.catalog$ = this.tasksService.getAll();
-    //
-    //     this.catalog$.subscribe({
-    //         next: (result: ICatalog): void => {
-    //             this.groups = result.groups;
-    //
-    //             this.route.params.subscribe(params => {
-    //                 this.currentGroup = (this.groups.find((group => {
-    //                     return group.id == params['id'];
-    //                 })) as IGroup);
-    //             })
-    //         },
-    //         error: (error): void => {
-    //             this.alertService.error(error.error);
-    //         }
-    //     });
-    // }
-
-    // topics = ['Ремонт в новостройке', 'Ремонт во вторичной квартире', 'Выбор материалов', 'Ремонт', 'Материал'];
-    // selectedTopics: string[] = [];
-    //
-    // dates = ['16.11', '17.11'];
-    // selectedDates: string[] = [];
-    //
-    // times = ['20:00', '21:00'];
-    // selectedTimes: string[] = [];
+    myFormConsultation!: FormGroup;
+    consultation: IConsultation | undefined;
 
     constructor(
         private consultationService: ConsultationService,
-    ) {
+        ) {
     };
 
     ngOnInit() {
@@ -71,44 +40,93 @@ export class RepairServicesComponent implements OnInit {
             this.tags = data.tags;
             this.availableDates = data.availableDates;
         });
-    }
+
+        this.myFormConsultation = new FormGroup({
+            tags: new FormControl<ITag[]>([]),
+            availableDates: new FormControl<IAvailableDates[]>([]),
+            availableTimes: new FormControl<string[]>([]),
+            comment: new FormControl('')
+        });
+
+        this.myFormConsultation.valueChanges.subscribe(formValue => {
+            console.log('Form values:', formValue);
+        });
+    };
+
 
     toggleSelectionTags(tag: ITag) {
-        const index = this.selectedTags.indexOf(tag.name);
+        const selectedTags = this.myFormConsultation.get('tags')?.value;
+        const index = selectedTags?.indexOf(tag.name);
         if (index === -1) {
             this.selectedTags.push(tag.name);
         } else {
             this.selectedTags.splice(index, 1);
         }
+        console.log(this.selectedTags);
+
+        // this.myFormConsultation.get('selectedTags')?.setValue(tag.name);
     }
 
     isSelectedTags(tag: ITag) {
         return this.selectedTags.includes(tag.name);
     }
 
-    toggleSelectionAvailableDates(availableDates: IAvailableDates) {
-        const index = this.selectedAvailableDates.indexOf(availableDates.date);
-        if (index === -1) {
-            this.selectedAvailableDates.push(availableDates.date);
-        } else {
-            this.selectedAvailableDates.splice(index, 1);
-        }
-    }
+    // toggleSelectionAvailableDates(availableDates: IAvailableDates) {
+    //     const index = this.selectedAvailableDates.indexOf(availableDates.date);
+    //     if (index === -1) {
+    //         this.selectedAvailableDates.push(availableDates.date);
+    //     } else {
+    //         this.selectedAvailableDates.splice(index, 1);
+    //     }
+    // }
+    //
+    // isSelectedAvailableDates(availableDates: IAvailableDates) {
+    //     return this.selectedAvailableDates.includes(availableDates.date);
+    // }
 
-    isSelectedAvailableDates(availableDates: IAvailableDates) {
-        return this.selectedAvailableDates.includes(availableDates.date);
-    }
-
-    toggleSelectionAvailableTimes(availableDates: IAvailableDates) {
-        const index = this.selectedAvailableTimes.indexOf(availableDates.times[0]);
+    toggleSelectionAvailableTime(time: string) {
+        const index = this.selectedAvailableTimes.indexOf(time);
         if (index === -1) {
-            this.selectedAvailableTimes.push(availableDates.times[0]);
+            this.selectedAvailableTimes.push(time);
         } else {
             this.selectedAvailableTimes.splice(index, 1);
         }
     }
 
-    isSelectedAvailableTimes(availableDates: IAvailableDates) {
-        return this.selectedAvailableTimes.includes(availableDates.times[0]);
+    isSelectedAvailableTime(time: string) {
+        // return this.myFormConsultation.get('selectedTime')?.value === time;
+
+        return this.selectedAvailableTimes.includes(time);
     }
+
+    submitForm() {
+        console.log(this.myFormConsultation.value);
+    }
+
+
+    // form: FormGroup;
+    // checkboxesData = ['Option 1', 'Option 2', 'Option 3']; // Данные для чекбоксов
+    //
+    // constructor(private fb: FormBuilder) {
+    //     this.form = this.fb.group({
+    //         checkboxes: this.fb.array([])
+    //     });
+    //
+    //     this.addCheckboxes();
+    // }
+    //
+    // private addCheckboxes() {
+    //     this.checkboxesData.forEach(() => this.checkboxArray.push(this.fb.control(false)));
+    // }
+    //
+    // get checkboxArray() {
+    //     return this.form.get('checkboxes') as FormArray;
+    // }
+    //
+    // submit() {
+    //     const selectedCheckboxes = this.form.value.checkboxes
+    //         .map((checked: any, index: any) => checked ? this.checkboxesData[index] : null)
+    //         .filter((value: null) => value !== null);
+    //     console.log(selectedCheckboxes);
+    // }
 }

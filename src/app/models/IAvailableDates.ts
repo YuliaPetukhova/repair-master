@@ -1,4 +1,4 @@
 export interface IAvailableDates{
     date: string;
-    times: string[];
+    times: string [];
 }

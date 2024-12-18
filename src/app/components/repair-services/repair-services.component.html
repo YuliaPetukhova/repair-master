@@ -1,62 +1,85 @@
 <app-menu></app-menu>
 <section class="repair-content">
     <div class="container">
-        <div class="repair-info">
+        <form [formGroup]="myFormConsultation" (ngSubmit)="submitForm()">
 
-            <div class="repair-header">
-                <h1 class="repair-title">Выбор консультации</h1>
-                <button type="button" class="repair-templates">Шаблоны консультаций</button>
+            <div class="repair-info">
+
+                <div class="repair-header">
+                    <h1 class="repair-title">Выбор консультации</h1>
+                    <button type="button" class="repair-templates">Шаблоны консультаций</button>
+                </div>
+
+                <div class="repair-text">
+                    <p>Кратко опишите проблему (необязательно)</p>
+                    <textarea
+                        type="text"
+                        class="repair-textarea"
+                        formControlName="comment"
+                    ></textarea>
+                </div>
+
+                <div class="repair-button-selected">
+                    <p>Выберите темы вопросов для обсуждения</p>
+                    <button
+                        class="repair-button-theme"
+                        *ngFor="let tag of tags"
+                        [ngClass]="{'selected': isSelectedTags(tag)}"
+                        (click)="toggleSelectionTags(tag)"
+                    >
+                        {{ tag.name }}
+                    </button>
+                </div>
+
+                <div class="repair-date">
+                    <p class="repair-date-title">Выберите дату и время консультации</p>
+                    <button class="repair-calendar">Все даты</button>
+                </div>
+
+                <div class="repair-select-time">
+                    <div
+                        *ngFor="let day of availableDates"
+                    >
+                        <button
+                            type="button"
+                            class="repair-button-theme"
+                            *ngFor="let time of day.times"
+                            [ngClass]="{'selected': isSelectedAvailableTime(time)}"
+                            (click)="toggleSelectionAvailableTime(time)"
+                        >
+                            {{ time + ' ' + day.date }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="repair-checkbox">
+                    <label class="repair-checkbox-label">
+                        <input type="checkbox">
+                        Сохранить шаблон
+                    </label>
+                </div>
+
+                <div class="repair-action">
+                    <button
+                        type="submit"
+                        class="repair-action-btn"
+                    >
+                        Оформить консультацию
+                    </button>
+                </div>
             </div>
-
-            <div class="repair-text">
-                <p>Кратко опишите проблему (необязательно)</p>
-                <textarea type="text" class="repair-textarea"></textarea>
-            </div>
-
-            <div class="repair-button-selected">
-                <p>Выберите темы вопросов для обсуждения</p>
-                <button
-                    class="repair-button-theme"
-                    *ngFor="let tag of tags"
-                    [ngClass]="{'selected': isSelectedTags(tag)}"
-                    (click)="toggleSelectionTags(tag)"
-                >
-                    {{ tag.name }}
-                </button>
-            </div>
-
-            <div class="repair-date">
-                <p class="repair-date-title">Выберите дату и время консультации</p>
-                <button class="repair-calendar">Все даты</button>
-            </div>
-
-            <div class="repair-select-date">
-                <button
-                    class="repair-button-theme"
-                    *ngFor="let availableDate of availableDates"
-                    [ngClass]="{'selected': isSelectedAvailableDates(availableDate)}"
-                    (click)="toggleSelectionAvailableDates(availableDate)"
-                >
-                    {{ availableDate.date }}
-                </button>
-            </div>
-
-            <div class="repair-select-time">
-                <button
-                    class="repair-button-theme"
-                    *ngFor="let time of availableDates"
-                    [ngClass]="{'selected': isSelectedAvailableTimes(time)}"
-                    (click)="toggleSelectionAvailableTimes(time)"
-                >
-                    {{ time.times}}
-                </button>
-            </div>
-
-            <input type="checkbox" class="repair-action-btn">Сохранить шаблон
-
-            <div class="repair-action">
-                <button type="submit" class="repair-action-btn">Оформить консультацию</button>
-            </div>
-        </div>
+        </form>
     </div>
+
+<!--    <form [formGroup]="form" (ngSubmit)="submit()">-->
+<!--        <div formArrayName="checkboxes" *ngFor="let checkbox of checkboxArray.controls; let i = index">-->
+<!--            <label>-->
+<!--                <input type="checkbox" [formControlName]="i">-->
+<!--                {{ checkboxesData[i] }}-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
 </section>
+
+

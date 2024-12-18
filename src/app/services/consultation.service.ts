@@ -33,11 +33,11 @@ export class ConsultationService {
                     ],
                     availableDates: [
                         {
-                            date: '2023-01-01',
+                            date: '30 ноября',
                             times: ['10:00', '11:00', '12:00']
                         },
                         {
-                            date: '2023-01-02',
+                            date: '31 ноября',
                             times: ['13:00', '14:00', '15:00']
                         }
                     ],

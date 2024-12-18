@@ -1,0 +1,13 @@
+.consultation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    margin: 3rem;
+}
+
+.actions button {
+    margin-left: 1rem;
+}
